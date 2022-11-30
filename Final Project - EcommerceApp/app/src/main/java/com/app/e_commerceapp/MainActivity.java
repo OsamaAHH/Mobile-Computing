@@ -30,30 +30,31 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
-        bottomNavigationView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
-                        return;
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.home:
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+                            return true;
 
-                    case R.id.shop:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, shopFragment).commit();
-                        return;
+                        case R.id.shop:
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, shopFragment).commit();
+                            return true;
 
-                    case R.id.category:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, categoryFragment).commit();
-                        return;
+                        case R.id.category:
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, categoryFragment).commit();
+                            return true;
 
-                    case R.id.cart:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, cartFragment).commit();
-                        return;
+                        case R.id.cart:
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, cartFragment).commit();
+                            return true;
 
-                }
-
+                    }
+                return false;
             }
         });
+
 
     }
 
