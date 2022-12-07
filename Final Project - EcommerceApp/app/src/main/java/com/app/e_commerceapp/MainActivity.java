@@ -4,13 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.io.IOException;
 import java.util.TimerTask;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,6 +65,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request get = new Request.Builder()
+                .url("https://luxxedit.com/wp-json/wc/v3/products?consumer_key=ck_9560bf9c146bbd47c2a8a26ed768e6f4326e3b36&consumer_secret=cs_5be146f6179135689b4b7cf93afa8a4a98601cd1")
+                .build();
+
+        client.newCall(get).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                try {
+                    ResponseBody responseBody = response.body();
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected code " + response);
+                    }
+
+                    Log.i("data", responseBody.string());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
