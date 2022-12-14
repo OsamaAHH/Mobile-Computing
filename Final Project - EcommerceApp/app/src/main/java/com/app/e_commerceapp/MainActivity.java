@@ -9,10 +9,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.app.e_commerceapp.models.Products;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.TimerTask;
 
 import okhttp3.Call;
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ShopFragment shopFragment = new ShopFragment();
     CategoryFragment categoryFragment = new CategoryFragment();
     CartFragment cartFragment = new CartFragment();
-
+ArrayList<Products> productsArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +92,20 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     Log.i("data", responseBody.string());
+
+                    JSONArray jsonArray  = new JSONArray(responseBody.string());
+                    for(int i = 0; i < jsonArray.length();i++)
+                    {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Products product = new Products();
+                        product.parsingObject(jsonObject);
+                        productsArrayList.add(product);
+                    }
+
+
+
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
