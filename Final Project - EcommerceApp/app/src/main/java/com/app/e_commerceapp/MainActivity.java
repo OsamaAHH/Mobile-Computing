@@ -103,9 +103,6 @@ ArrayList<Products> productsArrayList = new ArrayList<>();
                     }
 
 
-
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
