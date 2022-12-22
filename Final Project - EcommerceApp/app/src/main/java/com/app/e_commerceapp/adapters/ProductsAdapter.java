@@ -3,6 +3,8 @@ package com.app.e_commerceapp.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,7 +37,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Recycl
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, final int i) {
-        holder.PImage.setText(sensors.get(i).getProductImage());
+//        holder.PImage.setText(sensors.get(i).getProductImage());
         holder.PName.setText(sensors.get(i).getProductName());
         holder.PPrice.setText(sensors.get(i).getProductPrice());
 //        holder.cell.setOnClickListener(v -> mCallBack.onItemClick(sensors.get(i)));
@@ -52,10 +54,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Recycl
 
     static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView PImage;
+        private final ImageView PImage;
         private final TextView PName;
         private final TextView PPrice;
-        private final TextView Pbtn;
+        private final Button Pbtn;
 
         RecyclerViewHolder(View view) {
             super(view);
