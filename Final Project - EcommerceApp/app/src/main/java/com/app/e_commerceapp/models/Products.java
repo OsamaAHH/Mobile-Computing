@@ -33,7 +33,7 @@ public class Products {
 
 
     public Products parsingObject(JSONObject jsonObject) {
-        this.setProductImage(jsonObject.optString("permalink"));
+        this.setProductImage(jsonObject.optString("src"));
         this.setProductName(jsonObject.optString("name"));
         this.setProductPrice(jsonObject.optString("price"));
         return this;

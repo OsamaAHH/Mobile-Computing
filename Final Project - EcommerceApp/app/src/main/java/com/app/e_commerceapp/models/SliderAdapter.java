@@ -36,7 +36,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.RecyclerVi
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, final int i) {
-        holder.PName.setText(images.get(i).getProductName());
+//        holder.PName.setText(images.get(i).getProductName());
 //        holder.cell.setOnClickListener(v -> mCallBack.onItemClick(sensors.get(i)));
     }
 

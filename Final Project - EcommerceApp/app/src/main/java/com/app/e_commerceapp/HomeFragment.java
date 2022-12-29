@@ -25,25 +25,18 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onViewCreated(view, savedInstanceState);
-
-
         ArrayList<Integer> intList = new ArrayList<>();
-        intList.add(R.drawable.hero_section);
-        intList.add(R.drawable.hero_section2);
-
-        RecyclerView recyclerView = view.findViewById(R.id.image_slider);
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onViewCreated(view, savedInstanceState);
-
+//        intList.add(R.drawable.hero_section);
+//        intList.add(R.drawable.hero_section2);
+//
+//        RecyclerView recyclerView = view.findViewById(R.id.image_slider);
+//        recyclerView.setAdapter(adapter);
         Products products = new Products();
         products.setProductImage("no link");
         products.setProductName("Osama");
@@ -61,9 +54,9 @@ public class HomeFragment extends Fragment {
         productsArrayList.add(products1);
         productsArrayList.add(products2);
 
-        ProductsAdapter adapter = new ProductsAdapter(productsArrayList);
-        RecyclerView recyclerView = view.findViewById(R.id.hero_sec );
-        recyclerView.setAdapter(adapter);
+//        ProductsAdapter adapter = new ProductsAdapter(productsArrayList);
+//        RecyclerView recyclerView = view.findViewById(R.id.hero_sec );
+//        recyclerView.setAdapter(adapter);
 
 
     }

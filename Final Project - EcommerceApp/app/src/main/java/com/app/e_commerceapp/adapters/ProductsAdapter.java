@@ -1,5 +1,6 @@
 package com.app.e_commerceapp.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.e_commerceapp.R;
 import com.app.e_commerceapp.models.Products;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +23,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Recycl
     private final List<Products> sensors;
     public CallBack mCallBack;
 
+    public Context _cxt;
     public interface CallBack {
         void onItemClick(Products sensor);
     }
 
-    public ProductsAdapter(List<Products> sensors) {
+    public ProductsAdapter(List<Products> sensors, Context cxt) {
         this.sensors = sensors;
+        _cxt = cxt;
     }
 
     @Override
@@ -38,6 +42,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Recycl
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, final int i) {
 //        holder.PImage.setText(sensors.get(i).getProductImage());
+        Glide.with(_cxt).load(sensors.get(i).getProductImage()).into(holder.PImage);
         holder.PName.setText(sensors.get(i).getProductName());
         holder.PPrice.setText(sensors.get(i).getProductPrice());
 //        holder.cell.setOnClickListener(v -> mCallBack.onItemClick(sensors.get(i)));
@@ -65,6 +70,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Recycl
             PName = view.findViewById(R.id.ProdcutName);
             PPrice = view.findViewById(R.id.ProductPrice);
             Pbtn = view.findViewById(R.id.AddToCartBtn);
+
+
         }
     }
 

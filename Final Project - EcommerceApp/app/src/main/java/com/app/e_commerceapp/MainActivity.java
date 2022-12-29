@@ -71,43 +71,6 @@ ArrayList<Products> productsArrayList = new ArrayList<>();
         });
 
 
-        OkHttpClient client = new OkHttpClient();
-
-        Request get = new Request.Builder()
-                .url("https://luxxedit.com/wp-json/wc/v3/products?consumer_key=ck_9560bf9c146bbd47c2a8a26ed768e6f4326e3b36&consumer_secret=cs_5be146f6179135689b4b7cf93afa8a4a98601cd1")
-                .build();
-
-        client.newCall(get).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                try {
-                    ResponseBody responseBody = response.body();
-                    if (!response.isSuccessful()) {
-                        throw new IOException("Unexpected code " + response);
-                    }
-
-                    Log.i("data", responseBody.string());
-
-                    JSONArray jsonArray  = new JSONArray(responseBody.string());
-                    for(int i = 0; i < jsonArray.length();i++)
-                    {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        Products product = new Products();
-                        product.parsingObject(jsonObject);
-                        productsArrayList.add(product);
-                    }
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
     }
 
