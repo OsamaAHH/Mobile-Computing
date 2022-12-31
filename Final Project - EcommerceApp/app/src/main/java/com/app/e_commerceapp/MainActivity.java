@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ShopFragment shopFragment = new ShopFragment();
     CategoryFragment categoryFragment = new CategoryFragment();
     CartFragment cartFragment = new CartFragment();
-ArrayList<Products> productsArrayList = new ArrayList<>();
+    ArrayList<Products> productsArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
