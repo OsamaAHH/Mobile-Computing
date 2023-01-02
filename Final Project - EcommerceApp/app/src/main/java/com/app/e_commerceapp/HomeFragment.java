@@ -1,5 +1,6 @@
 package com.app.e_commerceapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import com.app.e_commerceapp.api.ApiClient;
 import com.app.e_commerceapp.api.ApiInterface;
 
 import com.app.e_commerceapp.homeModels.ProductsModel;
+import com.app.e_commerceapp.interfaceCallBack.ModelCallBack;
 import com.app.e_commerceapp.models.Products;
 
 import java.util.ArrayList;
@@ -60,35 +62,9 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onViewCreated(view, savedInstanceState);
-//        ArrayList<Integer> intList = new ArrayList<>();
-//        intList.add(R.drawable.hero_section);
-//        intList.add(R.drawable.hero_section2);
-//
-//        RecyclerView recyclerView = view.findViewById(R.id.image_slider);
-//        recyclerView.setAdapter(adapter);
-//        Products products = new Products();
-//        products.setProductImage("no link");
-//        products.setProductName("Osama");
-//        products.setProductPrice("123");
-//        Products products1 = new Products();
-//        products.setProductImage("no link");
-//        products.setProductName("Osama");
-//        products.setProductPrice("123");
-//        Products products2 = new Products();
-//        products.setProductImage("no link");
-//        products.setProductName("Osama");
-//        products.setProductPrice("123");
-//        ArrayList<Products> productsArrayList = new ArrayList<>();
-//        productsArrayList.add(products);
-//        productsArrayList.add(products1);
-//        productsArrayList.add(products2);
-
-//        ProductsAdapter adapter = new ProductsAdapter(productsArrayList);
-//        RecyclerView recyclerView = view.findViewById(R.id.hero_sec );
-//        recyclerView.setAdapter(adapter);
-
-
     }
+
+
 
     private void getProductsData() {
         Log.d("TAG", "onResponse:     ");
@@ -114,7 +90,17 @@ public class HomeFragment extends Fragment {
                             }
 
 
-                            ImageSliderAdapter imageSliderAdapter = new ImageSliderAdapter(productsModelArrayList, getActivity());
+                            ImageSliderAdapter imageSliderAdapter = new ImageSliderAdapter(productsModelArrayList, getActivity(), new ModelCallBack() {
+                                @Override
+                                public void onClickProduct(ProductsModel productsModels) {
+                                    Intent intent = new Intent(requireActivity(),ProductDetailsActivity.class);
+                                    Utils utils = new Utils();
+                                    Log.d("setDataToUi", "setDataToUi:  click  "+productsModels.getName());
+                                    intent.putExtra("Model",productsModels);
+                                    utils.productsModels = productsModels;
+                                    startActivity(intent);
+                                }
+                            });
                             imageSliderRecyclerView.setAdapter(imageSliderAdapter);
 
 

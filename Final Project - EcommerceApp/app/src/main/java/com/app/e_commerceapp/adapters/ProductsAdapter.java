@@ -1,6 +1,8 @@
 package com.app.e_commerceapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,70 +11,87 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.e_commerceapp.ProductDetailsActivity;
 import com.app.e_commerceapp.R;
+import com.app.e_commerceapp.Utils;
+import com.app.e_commerceapp.homeModels.ProductsModel;
+import com.app.e_commerceapp.interfaceCallBack.ModelCallBack;
 import com.app.e_commerceapp.models.Products;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.RecyclerViewHolder> {
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
 
-    private final List<Products> sensors;
-    public CallBack mCallBack;
+    ModelCallBack modelCallBack;
+    ArrayList<ProductsModel> productsModelArrayList;
+    Context context;
 
-    public Context _cxt;
-    public interface CallBack {
-        void onItemClick(Products sensor);
+
+    public ProductsAdapter(ArrayList<ProductsModel> productsModelArrayList, Context context, ModelCallBack modelCallBack) {
+        this.productsModelArrayList = productsModelArrayList;
+        this.context = context;
+        this.modelCallBack = modelCallBack;
     }
 
-    public ProductsAdapter(List<Products> sensors, Context cxt) {
-        this.sensors = sensors;
-        _cxt = cxt;
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_image_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.product_list_item, viewGroup, false);
-        return new RecyclerViewHolder(v);
-    }
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-    @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, final int i) {
-//        holder.PImage.setText(sensors.get(i).getProductImage());
-        Glide.with(_cxt).load(sensors.get(i).getProductImage()).into(holder.PImage);
-        holder.PName.setText(sensors.get(i).getProductName());
-        holder.PPrice.setText(sensors.get(i).getProductPrice());
-//        holder.cell.setOnClickListener(v -> mCallBack.onItemClick(sensors.get(i)));
+        Glide.with(context)
+                .load(productsModelArrayList.get(position).getImages().get(0).getSrc())
+                .placeholder(R.drawable.logo)
+                .into(holder.productImage);
+
+        holder.productPrice.setText(productsModelArrayList.get(position).getPrice()+"$");
+        holder.productName.setText(productsModelArrayList.get(position).getName());
+
+        holder.productImageItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+          /*      Intent intent = new Intent(context, ProductDetailsActivity.class);
+                Utils utils = new Utils();
+                Log.d("setDataToUi", "setDataToUi:  click 64 "+productsModelArrayList.get(position).getName());
+
+                utils.productsModels = productsModelArrayList.get(position);
+                context.startActivity(intent);*/
+                modelCallBack.onClickProduct(productsModelArrayList.get(position));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return sensors.size();
+        return productsModelArrayList.size();
     }
 
-    public void setOnClickedListener(CallBack mCallback) {
-        this.mCallBack = mCallback;
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-    static class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        ImageView productImage;
+        TextView productPrice, productName;
+        ConstraintLayout productImageItem;
 
-        private final ImageView PImage;
-        private final TextView PName;
-        private final TextView PPrice;
-        private final Button Pbtn;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-        RecyclerViewHolder(View view) {
-            super(view);
-            PImage = view.findViewById(R.id.ProductImage);
-            PName = view.findViewById(R.id.ProdcutName);
-            PPrice = view.findViewById(R.id.ProductPrice);
-            Pbtn = view.findViewById(R.id.AddToCartBtn);
+            productImage = itemView.findViewById(R.id.ProductImage);
+            productName = itemView.findViewById(R.id.ProdcutName);
+            productPrice = itemView.findViewById(R.id.ProductPrice);
+            productImageItem = itemView.findViewById(R.id.productImageItem);
 
 
         }
     }
+
 
 }

@@ -1,13 +1,14 @@
 
 package com.app.e_commerceapp.homeModels;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Attribute {
+public class Attribute implements Serializable {
 
     @SerializedName("id")
     @Expose

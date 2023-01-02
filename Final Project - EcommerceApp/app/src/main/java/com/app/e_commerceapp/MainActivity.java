@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     HomeFragment homeFragment = new HomeFragment();
     ShopFragment shopFragment = new ShopFragment();
-    CategoryFragment categoryFragment = new CategoryFragment();
     CartFragment cartFragment = new CartFragment();
     ArrayList<Products> productsArrayList = new ArrayList<>();
     @Override
@@ -57,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
                             getSupportFragmentManager().beginTransaction().replace(R.id.container, shopFragment).commit();
                             return true;
 
-                        case R.id.category:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.container, categoryFragment).commit();
-                            return true;
 
                         case R.id.cart:
                             getSupportFragmentManager().beginTransaction().replace(R.id.container, cartFragment).commit();

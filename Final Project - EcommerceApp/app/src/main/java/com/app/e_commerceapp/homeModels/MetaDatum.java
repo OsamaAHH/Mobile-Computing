@@ -5,8 +5,10 @@ package com.app.e_commerceapp.homeModels;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class MetaDatum {
+
+public class MetaDatum  implements Serializable {
 
     @SerializedName("id")
     @Expose

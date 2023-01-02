@@ -10,29 +10,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.e_commerceapp.R;
 import com.app.e_commerceapp.homeModels.ProductsModel;
+import com.app.e_commerceapp.interfaceCallBack.ModelCallBack;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.ViewHolder> {
 
+    ModelCallBack modelCallBack;
     ArrayList<ProductsModel> productsModelArrayList;
     Context context;
 
 
-    public ImageSliderAdapter(ArrayList<ProductsModel> productsModelArrayList, Context context) {
+    public ImageSliderAdapter(ArrayList<ProductsModel> productsModelArrayList, Context context, ModelCallBack modelCallBack) {
         this.productsModelArrayList = productsModelArrayList;
         this.context = context;
+        this.modelCallBack = modelCallBack;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_image_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -46,6 +50,16 @@ public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.
 
         holder.productPrice.setText(productsModelArrayList.get(position).getPrice()+"$");
         holder.productName.setText(productsModelArrayList.get(position).getName());
+
+        holder.productListItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                modelCallBack.onClickProduct(productsModelArrayList.get(position));
+
+
+            }
+        });
 
 
 
@@ -67,6 +81,7 @@ public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.
 
         ImageView productImage;
         TextView productPrice, productName;
+        ConstraintLayout productListItem;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -75,6 +90,11 @@ public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.
             productImage = itemView.findViewById(R.id.ProductImage);
             productName = itemView.findViewById(R.id.ProdcutName);
             productPrice = itemView.findViewById(R.id.ProductPrice);
+            productListItem = itemView.findViewById(R.id.productsListItem);
+
+
+
+
 
 
         }
