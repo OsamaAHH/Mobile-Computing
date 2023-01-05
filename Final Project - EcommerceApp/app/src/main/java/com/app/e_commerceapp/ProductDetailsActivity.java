@@ -1,15 +1,22 @@
 package com.app.e_commerceapp;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.app.e_commerceapp.databinding.ActivityProductDetailsBinding;
 import com.app.e_commerceapp.homeModels.ProductsModel;
 import com.app.e_commerceapp.interfaceCallBack.ModelCallBack;
+import com.app.e_commerceapp.roomdatabase.AppDatabase;
+import com.app.e_commerceapp.roomdatabase.User;
+import com.app.e_commerceapp.roomdatabase.UserDao;
 import com.bumptech.glide.Glide;
 
 public class ProductDetailsActivity extends AppCompatActivity implements ModelCallBack {
@@ -42,6 +49,35 @@ public class ProductDetailsActivity extends AppCompatActivity implements ModelCa
             @Override
             public void onClick(View view) {
                 onBackPressed();
+
+            }
+        });
+
+        binding.productDetailCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "room_db").allowMainThreadQueries().build();
+
+                UserDao userDao = db.userDao();
+
+
+                Log.d("aliyan", "onClick: "+ model.getId());
+
+                Boolean check = userDao.is_exist(model.getId());
+
+                if(check== false){
+
+                    userDao.insertUser(new User(0, model.getName(),
+                            model.getPrice(), model.getId(), model.getImages().get(0).getSrc(), 1));
+                    Toast.makeText(ProductDetailsActivity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                }
+                else{
+
+                    userDao.updateById(model.getId(),userDao.getUserFromId(model.getId()).getProductQuantity()+1);
+
+                }
+
 
             }
         });

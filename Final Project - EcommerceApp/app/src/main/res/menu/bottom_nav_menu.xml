@@ -12,7 +12,6 @@
         android:icon="@drawable/ic_baseline_shopping_bag_24"/>
 
 
-
     <item android:id="@+id/cart"
         android:title="Cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
