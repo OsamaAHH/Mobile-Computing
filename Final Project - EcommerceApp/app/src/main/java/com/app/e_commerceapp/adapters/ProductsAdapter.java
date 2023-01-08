@@ -53,7 +53,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 .placeholder(R.drawable.logo)
                 .into(holder.productImage);
 
-        holder.productPrice.setText(productsModelArrayList.get(position).getPrice()+"$");
+        holder.productPrice.setText("$ "+productsModelArrayList.get(position).getPrice()+"$");
         holder.productName.setText(productsModelArrayList.get(position).getName());
 
         holder.productImageItem.setOnClickListener(new View.OnClickListener() {

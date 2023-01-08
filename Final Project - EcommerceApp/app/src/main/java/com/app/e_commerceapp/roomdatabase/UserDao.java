@@ -11,24 +11,21 @@ public interface UserDao {
     @Insert
     void insertUser(User users);
 
-
     @Query("SELECT EXISTS (SELECT * FROM User WHERE productId=:productId)")
     Boolean is_exist(int productId);
-
 
     @Query("SELECT * FROM User")
     List<User> getallusers();
 
-
+    @Query("DELETE FROM User")
+    void deleteallusers();
 
     @Query("SELECT * FROM User WHERE productId=:productId")
     User getUserFromId(int productId);
 
-
-
-
     @Query("DELETE FROM User WHERE productId = :productId")
     void deleteById(int productId);
+
 
 
     @Query("UPDATE User SET productQuantity=:productQuantity  WHERE productId= :productId")

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".PlaceOrderActivity">
+
+    <LinearLayout
+        android:id="@+id/logoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingVertical="5dp"
+            android:src="@drawable/logo_without_background" />
+
+    </LinearLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/placeOrderBtn"
+        app:layout_constraintTop_toBottomOf="@id/logoLayout">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <TextView
+                android:id="@+id/itemCountTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="26dp"
+                android:text="ITEMS (6)"
+                android:textColor="#818181"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/itemLayout" />
+
+            <TextView
+                android:id="@+id/totalRupeeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="26dp"
+                android:text="TOTAL : RS 1200.00"
+                android:textColor="#818181"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="20dp"
+                android:text="Please Fill the form below"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/itemCountTv" />
+
+
+            <EditText
+                android:id="@+id/fName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="FirstName"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+
+            <EditText
+                android:id="@+id/lName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="LastName"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/fName" />
+
+
+            <EditText
+                android:id="@+id/ContactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Contact Number*"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/lName" />
+
+
+            <EditText
+                android:id="@+id/addressLine1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Address line 1*"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/ContactNumber" />
+
+
+            <EditText
+                android:id="@+id/addressLine2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Address Line 2"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/addressLine1" />
+
+
+            <EditText
+                android:id="@+id/countryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Country Name*"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/addressLine2" />
+
+
+            <EditText
+                android:id="@+id/stateName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="State Name*"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/countryName" />
+
+            <EditText
+                android:id="@+id/cityName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="City Name*"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/stateName" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Zip/ Postal Code*"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#939393"
+                app:layout_constraintTop_toBottomOf="@id/cityName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <Button
+        android:id="@+id/placeOrderBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:text="Place Order Now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
